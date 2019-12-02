@@ -72,11 +72,10 @@
 
 </template>
 <script>
-import AppImageCropper from './AppImageCropper'
+// import AppImageCropper from './AppImageCropper'
+
 export default {
-  components:{
-AppImageCropper:AppImageCropper
-    },
+ props:['question'],
     data(){
         return{
        

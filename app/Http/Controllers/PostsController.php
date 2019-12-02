@@ -42,11 +42,11 @@ class PostsController extends Controller
      */
     public function store(PostsRequest $request)
     {
-        dd($request->all());
+        
       
     //    $post=posts::create($request->all());
     $post=auth()->user()->post()->create($request->all());
-       return "Ok";
+       return response(new PostResource($post),'200');
     }
 
     /**
@@ -55,10 +55,10 @@ class PostsController extends Controller
      * @param  \App\posts  $posts
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show($posts)
     {
-        
-        return PostResource::make(posts::findOrFail($id));
+       
+        return  PostResource::collection(posts::where('slug',$posts)->get());
     }
 
     /**

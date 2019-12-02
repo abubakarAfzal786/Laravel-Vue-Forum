@@ -1,0 +1,33 @@
+<template>
+    <div>
+          <v-layout>
+    <v-flex xs12  sm5 offset-sm3 style="margin-top:20px;">
+      <v-card>
+        <v-card-media :src="quest.image" height="200px">
+        </v-card-media>
+        <v-card-title primary-title>
+            <div>
+
+
+            <h3 class="headline mb-0">{{quest.title}}</h3>
+
+
+            <div>{{quest.description}}</div>
+          </div>
+        </v-card-title>
+        <v-card-actions>
+          <v-btn flat color="orange">Share</v-btn>
+          <v-btn flat color="orange">Explore</v-btn>
+        </v-card-actions>
+      </v-card>
+    </v-flex>
+    
+  </v-layout>
+    </div>
+</template>
+<script>
+export default {
+    props:['quest'],
+   
+}
+</script>

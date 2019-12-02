@@ -24,8 +24,10 @@ export default {
 items:[
  
   {to:'/Forum',name:"Forum",show:User.loggedin()},
+  {to:'/AddQuestion',name:'Add Question',show:User.loggedin()},
+
   {to:'/logout',name:'Logout',show:User.loggedin()},
-  {to:'/login',name:'Login',show:!User.loggedin()}
+  {to:'/login',name:'Login',show:!User.loggedin()},
 ]
       }
     },

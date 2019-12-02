@@ -6,7 +6,8 @@ import AppHome from '../components/AppHome'
 import AppSignup from '../components/AppSignup'
 import AppAddQuestion from '../components/AppAddQuestion'
 import Applogout from '../components/Aplogout'
-
+import AppForum from '../components/AppForum'
+import AppShowQuestion from '../components/Question/AppShowQuestion'
 Vue.use(VueRouter)
 
 // const Foo = { template: '<div>foo</div>' }
@@ -21,11 +22,13 @@ const routes = [
   { path: '/', component: AppHome },
 
 {path:'/signup',component:AppSignup},
-{path:'/addquestion',component:AppAddQuestion},
+{path:'/AddQuestion',component:AppAddQuestion},
   { path: '/login', component: AppLogin },
-  {path:'/logout',component:Applogout}
-
+  {path:'/logout',component:Applogout},
+{path:'/Forum',component:AppForum},
+{path:'/question/:slug',component:AppShowQuestion}
   // { path: '/bar', component: Bar }
+  
 ]
 
 // 3. Create the router instance and pass the `routes` option
@@ -33,6 +36,17 @@ const routes = [
 // keep it simple for now.
 const router = new VueRouter({
   mode:"history",
-  routes // short for `routes: routes`
+  routes, // short for `routes: routes`
+  meta: {
+    progress: {
+      func: [
+        {call: 'color', modifier: 'temp', argument: '#ffb000'},
+        {call: 'fail', modifier: 'temp', argument: '#6e0000'},
+        {call: 'location', modifier: 'temp', argument: 'top'},
+        {call: 'transition', modifier: 'temp', argument: {speed: '1.5s', opacity: '0.6s', termination: 400}}
+      ]
+    }
+  }
 })
+
 export default router;

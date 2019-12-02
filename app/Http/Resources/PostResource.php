@@ -18,7 +18,10 @@ class PostResource extends JsonResource
             'title'=>$this->title,
             'username'=>$this->user->name,
             'description'=>$this->description,
+            'image'=>$this->image,
+            'user_id'=>$this->user_id,
             'created_at'=>date('d-m-y',strtotime($this->created_at)),
+            'path'=>$this->path,
             
             
         ];

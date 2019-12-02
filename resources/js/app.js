@@ -6,17 +6,31 @@
 
 require('./bootstrap');
 import Vue from 'vue'
-
-
+import VueProgressBar from 'vue-progressbar'
+import App from './components/AppHome1'
+const options = {
+    color: 'rgb(34, 153, 221)',
+    failedColor: '#874b4b',
+    thickness: '5px',
+    transition: {
+      speed: '0.2s',
+      opacity: '0.6s',
+      termination: 300
+    },
+    autoRevert: true,
+    location: 'top',
+    inverse: false
+  }
 import Vuetify from 'vuetify'
 
+import vueTopprogress from 'vue-top-progress'
 
 import VueCroppie from 'vue-croppie';
 import AOS from 'aos';
 import 'aos/dist/aos.css'; // You can also use <link> for styles
 // ..
 window.EventBus=new Vue();
-
+Vue.use(vueTopprogress)
 Vue.use(VueCroppie);
 AOS.init();
 import User from './Helpers/User'
@@ -49,6 +63,7 @@ Vue.component('example-component', require('./components/AppHome1.vue').default)
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 import router from './router/router'
+Vue.use(VueProgressBar, options)
 const app = new Vue({
     
     el: '#app',
