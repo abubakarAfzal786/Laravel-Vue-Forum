@@ -22,6 +22,7 @@ class PostResource extends JsonResource
             'user_id'=>$this->user_id,
             'created_at'=>date('d-m-y',strtotime($this->created_at)),
             'path'=>$this->path,
+            'reply'=>ReplyResource::collection($this->replies)
             
             
         ];

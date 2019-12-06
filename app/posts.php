@@ -1,7 +1,8 @@
 <?php
 
 namespace App;
-
+use App\Reply;
+use App\User;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Support\Facades\Auth;
 use Cviebrock\EloquentSluggable\Sluggable;
@@ -9,7 +10,9 @@ class posts extends Model
 {
     use Sluggable;
     protected $table="posts";
+    protected $with=['replies'];
     protected $fillable=['title','description','image','user_id'];
+   
 //     public static function boot()
 //     {
 //         parent::boot();
@@ -35,12 +38,16 @@ class posts extends Model
     {
         return 'slug';
     }
+    public function replies()
+    {
+        return $this->hasMany(Reply::class)->latest();
+    }
    public function user()
    {
-       return $this->belongsTo('App\User');
+       return $this->belongsTo(User::class);
    }
    public function getPathAttribute()
    {
-return "question/$this->slug";
+return "/post/$this->slug";
    }
 }

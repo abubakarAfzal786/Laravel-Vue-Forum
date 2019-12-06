@@ -23,11 +23,36 @@
     </v-flex>
     
   </v-layout>
+  <app-show-reply v-for="repli in this.reply" :key="repli" :reply=repli></app-show-reply>
     </div>
 </template>
 <script>
+import AppShowReply from '../Reply/AppShowReply'
+
 export default {
-    props:['quest'],
-   
+    props:['quest','reply'],
+    components:{
+      AppShowReply:AppShowReply
+    },
+   data()
+   {
+     return{
+       
+
+     }
+    
+   },
+    created() {
+         EventBus.$on('AddNewReply',(Reply)=>{
+         
+            this.reply.unshift(Reply)
+            window.scrollTo({
+      top:4,
+      bottom: 4,
+     behavior: 'smooth'
+  })
+            
+        })
+     },
 }
 </script>

@@ -6,7 +6,7 @@ use Illuminate\Notifications\Notifiable;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\App;
-
+use App\Reply;
 class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
@@ -68,5 +68,9 @@ public function setPasswordAttribute($value)
     public function post()
     {
         return $this->hasMany(posts::class);
+    }
+    public function reply()
+    {
+        return $this->hasMany(Reply::class);
     }
 }

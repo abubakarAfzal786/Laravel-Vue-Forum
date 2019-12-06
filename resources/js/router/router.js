@@ -26,7 +26,7 @@ const routes = [
   { path: '/login', component: AppLogin },
   {path:'/logout',component:Applogout},
 {path:'/Forum',component:AppForum},
-{path:'/question/:slug',component:AppShowQuestion}
+{path:'/post/:slug',component:AppShowQuestion}
   // { path: '/bar', component: Bar }
   
 ]

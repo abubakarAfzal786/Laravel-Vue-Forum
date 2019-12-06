@@ -1,14 +1,16 @@
 <template>
 <div>
-<app-single-question v-for="question in questions" :key="question.title" :quest=question></app-single-question>
+<app-single-question v-for="question in questions" :key="question.title" :quest=question :reply=question.reply></app-single-question>
  <app-add-reply :quest=slug></app-add-reply>
 </div>
 </template>
 <script>
 import AppAddReply from '../Reply/AppAddReply'
 import AppSingleQuestion from './AppSingleQuestion';
+import AppShowReply from '../Reply/AppShowReply'
 export default {
     components:{
+        AppShowReply:AppShowReply,
     AppAddReply:AppAddReply,
 AppSingleQuestion:AppSingleQuestion
     },
@@ -17,6 +19,7 @@ AppSingleQuestion:AppSingleQuestion
      return{
 questions:[],
 slug:this.$route.params.slug,
+reply:[]
      }
  },
  created() {
@@ -24,6 +27,7 @@ slug:this.$route.params.slug,
     .then(res=>
         {
             this.questions=res.data.data
+            this.reply=res.data.data.reply
             console.log(this.questions)
             }
       
