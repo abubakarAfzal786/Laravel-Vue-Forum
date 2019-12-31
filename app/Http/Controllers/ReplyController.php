@@ -15,9 +15,13 @@ class ReplyController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(posts $post)
+    public function index($post)
     {
-        return $post->replies();
+        $post=posts::where('slug',$post)->first();
+        $reply=ReplyResource::collection(Reply::where('posts_id',$post->id)->orderBy('id','desc')->get());
+      return response($reply);
+    //  return ReplyResource::collection($post->replies());
+        
     }
 
     /**
@@ -29,7 +33,11 @@ class ReplyController extends Controller
     {
         //
     }
-
+public function reply($id)
+{
+$reply=ReplyResource::collection(Reply::where('child_id',$id)->get());
+return response($reply);
+}
     /**
      * Store a newly created resource in storage.
      *

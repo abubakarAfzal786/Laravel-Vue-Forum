@@ -1,6 +1,6 @@
 <template>
 <div>
-<app-single-question v-for="question in questions" :key="question.title" :quest=question :reply=question.reply></app-single-question>
+<app-single-question v-for="question in questions" :key="question.title" :quest=question :reply=reply></app-single-question>
  <app-add-reply :quest=slug></app-add-reply>
 </div>
 </template>
@@ -27,12 +27,17 @@ reply:[]
     .then(res=>
         {
             this.questions=res.data.data
-            this.reply=res.data.data.reply
+            
             console.log(this.questions)
             }
+            
       
     );
-      
+      axios.get(`/api/post/${this.$route.params.slug}/reply`)
+      .then(res=>{
+          this.reply=res.data
+          
+      })
  },   
 }
 

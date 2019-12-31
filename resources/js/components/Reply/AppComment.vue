@@ -1,6 +1,6 @@
 <template>
 <div>
-    <v-layout :style="bcolor">
+    <v-layout>
      
          <v-flex xs12 sm8 offset-sm2 style="margin-top:10px; color:red;">
       <v-card>
@@ -23,23 +23,16 @@
     
       
   </v-layout>
-<reply v-for="reply in comment" :key="reply.id" :reply=reply styling="color:red; margin-left:200px;"></reply>
+
 </div>
 
 </template>
 <script>
 
-import AppShowReply from './AppShowReply'
 
 export default {
   name: 'reply',
-    props:{
-      reply:{},
-      styling:{
-        type:String,
-
-      }
-    },
+    props:['reply'],
  components:{
 'reply':AppShowReply
  },
@@ -49,11 +42,7 @@ export default {
         comment:[]
       }
     },
-computed: {
-  bcolor(){
-    return this.styling
-  }
-},
+
        created() {
 axios.get(`/api/comment/${this.reply.id}`)
 .then(response=>

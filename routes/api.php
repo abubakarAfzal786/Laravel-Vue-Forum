@@ -35,3 +35,4 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
     });
 Route::apiResource('posts','PostsController');
 Route::apiResource('post/{question}/reply','ReplyController');
+Route::get('comment/{id}','ReplyController@reply');

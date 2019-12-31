@@ -23,16 +23,40 @@
     </v-flex>
     
   </v-layout>
-  <app-show-reply v-for="repli in this.reply" :key="repli" :reply=repli></app-show-reply>
+ <div v-for="repli in this.reply" :key="repli.id">
+   
+
+
+
+
+ <div v-if="repli.child_id==0">
+ <app-show-reply 
+ :reply=repli  ></app-show-reply>
+</div>
+
+
+
+  </div>
+
+
+  
+
+ </div>
+
+       
+ 
+ 
     </div>
 </template>
 <script>
 import AppShowReply from '../Reply/AppShowReply'
-
+import AppReply from '../Reply/AppReply'
 export default {
+  
     props:['quest','reply'],
     components:{
-      AppShowReply:AppShowReply
+      AppShowReply:AppShowReply,
+      AppReply:AppReply
     },
    data()
    {
@@ -43,6 +67,7 @@ export default {
     
    },
     created() {
+      
          EventBus.$on('AddNewReply',(Reply)=>{
          
             this.reply.unshift(Reply)

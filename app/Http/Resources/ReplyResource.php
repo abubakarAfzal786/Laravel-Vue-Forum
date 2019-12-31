@@ -18,6 +18,8 @@ class ReplyResource extends JsonResource
             'comment'=>$this->comment,
             'username'=>$this->user->name,
             'created_at'=> $this->created_at->diffForHumans(),
+            'child_id'=>$this->child_id,
+            'id'=>$this->id
         ];
     }
 }

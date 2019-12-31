@@ -14,6 +14,7 @@ class PostResource extends JsonResource
      */
     public function toArray($request)
     {
+     
         return [
             'title'=>$this->title,
             'username'=>$this->user->name,
@@ -22,7 +23,8 @@ class PostResource extends JsonResource
             'user_id'=>$this->user_id,
             'created_at'=>date('d-m-y',strtotime($this->created_at)),
             'path'=>$this->path,
-            'reply'=>ReplyResource::collection($this->replies)
+           
+
             
             
         ];
