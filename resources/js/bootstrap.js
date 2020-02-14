@@ -30,14 +30,27 @@ window.axios.defaults.headers.common['Authorization'] = tok;
  * for events that are broadcast by Laravel. Echo and event broadcasting
  * allows your team to easily build robust real-time web applications.
  */
+let token = document.head.querySelector('meta[name="csrf-token"]');
 
-// import Echo from 'laravel-echo';
+if (token) {
+    window.axios.defaults.headers.common['X-CSRF-TOKEN'] = token.content;
+} else {
+    console.error('CSRF token not found: https://laravel.com/docs/csrf#csrf-x-csrf-token');
+}
 
-// window.Pusher = require('pusher-js');
+import Echo from 'laravel-echo';
 
-// window.Echo = new Echo({
-//     broadcaster: 'pusher',
-//     key: process.env.MIX_PUSHER_APP_KEY,
-//     cluster: process.env.MIX_PUSHER_APP_CLUSTER,
-//     encrypted: true
-// });
+window.Pusher = require('pusher-js');
+
+window.Echo = new Echo({
+    broadcaster: 'pusher',
+    key: 'MyKey',
+    wsHost: window.location.hostname,
+    wsPort: 6001, 
+    disableStats: true,
+    auth:{
+        headers:{
+            Authorization:tok
+        }
+    }
+});

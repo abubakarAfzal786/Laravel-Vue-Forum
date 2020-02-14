@@ -1,7 +1,7 @@
 <template>
     <div>
         
-        <app-all-question v-for="questions in question" :key="questions.title" :questions=questions></app-all-question>
+        <app-all-question v-for="questions in question" :key="questions.id" :questions=questions></app-all-question>
     </div>
 </template>
 <script>
@@ -18,14 +18,17 @@ export default {
         AppAllQuestion:AppAllQuestion
     },
     created(){
-        this.$Progress.start()
-        axios.get('/api/posts')
+            this.$Progress.start()
+               axios.get('/api/posts')
         .then(response=>{
             this.$Progress.finish()
             this.question=response.data.data
-            console.log(this.question)
+            // console.log(this.question)
             })
 
+    },
+    methods: {
+  
     },
 }
 </script>

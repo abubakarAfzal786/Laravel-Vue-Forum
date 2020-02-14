@@ -69,8 +69,14 @@ public function setPasswordAttribute($value)
     {
         return $this->hasMany(posts::class);
     }
-    public function reply()
+    // public function reply()
+    // {
+    //     return $this->hasMany(Reply::class);
+    // }
+    public function chat()
     {
-        return $this->hasMany(Reply::class);
+        
     }
+
+
 }

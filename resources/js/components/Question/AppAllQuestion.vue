@@ -16,14 +16,18 @@
           </div>
         </v-card-title>
         <v-card-actions v-if="me()">
-          <v-btn flat color="orange">Share</v-btn>
-          <v-btn flat color="orange">Explore</v-btn>
+              <v-btn icon small>
+<v-icon color="blue" @click="editQ">edit</v-icon>
+ </v-btn>
+  <v-btn icon small>
+<v-icon color="red" @click="deleteQ">delete</v-icon>
+          </v-btn>
         </v-card-actions>
       </v-card>
     </v-flex>
     
   </v-layout>
-
+<app-edit-question v-if="edit"   :question=questions></app-edit-question>
 </div>
 </template>
 <script>
@@ -38,7 +42,7 @@ AppEditQuestion:AppEditQuestion
   data()
   {
 return{
- 
+ edit:false
 }
 
   },
@@ -46,6 +50,14 @@ return{
     me()
     {
 return User.id()==this.questions.user_id?true:false;
+
+    },
+    editQ()
+    {
+      return this.edit=true
+    },
+    deleteQ()
+    {
 
     },
     log()

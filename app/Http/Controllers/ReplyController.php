@@ -81,9 +81,10 @@ return response($reply);
      * @param  \App\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Reply $reply)
+    public function update($post,$reply)
     {
-        //
+       $reply=Reply::where(['posts_id'=>$post,'id'=>$reply])->update(['comment'=>request('body')]);
+    //    return response(new ReplyResource($reply));
     }
 
     /**
@@ -92,8 +93,11 @@ return response($reply);
      * @param  \App\Reply  $reply
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Reply $reply)
+    public function destroy($post,$reply)
     {
-        //
+        $reply=Reply::where(['posts_id'=>$post,'id'=>$reply])->first();
+        $reply->delete();
+        return response(http_response_code(200));
+     
     }
 }

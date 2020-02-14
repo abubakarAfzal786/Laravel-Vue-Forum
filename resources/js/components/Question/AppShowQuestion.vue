@@ -1,6 +1,6 @@
 <template>
 <div>
-<app-single-question v-for="question in questions" :key="question.title" :quest=question :reply=reply></app-single-question>
+<app-single-question v-for="question in questions" :key="question.id" :quest=question :reply=reply></app-single-question>
  <app-add-reply :quest=slug></app-add-reply>
 </div>
 </template>
@@ -23,7 +23,7 @@ reply:[]
      }
  },
  created() {
-    axios.get(`/api/posts/${this.$route.params.slug}`)
+             axios.get(`/api/posts/${this.$route.params.slug}`)
     .then(res=>
         {
             this.questions=res.data.data
@@ -39,6 +39,9 @@ reply:[]
           
       })
  },   
+ methods: {
+
+ },
 }
 
 </script>

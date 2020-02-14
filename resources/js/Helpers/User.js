@@ -29,6 +29,10 @@ logout(){
     Storage.clearitems()
     window.location="/"
 }
+name()
+{
+  return Storage.getUser();
+}
 id(){
   if(this.loggedin()){
     const payload=Token.payload(Storage.getToken())

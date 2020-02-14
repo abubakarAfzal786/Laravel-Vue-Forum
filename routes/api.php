@@ -36,3 +36,7 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::apiResource('posts','PostsController');
 Route::apiResource('post/{question}/reply','ReplyController');
 Route::get('comment/{id}','ReplyController@reply');
+Route::apiResource('friends','FriendController');
+// Route::apiResource('Chat','ChatController');
+Route::post('chat','ChatController@get_chat');
+Route::post('send_chat','ChatController@send_chat');

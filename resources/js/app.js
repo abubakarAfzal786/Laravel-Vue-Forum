@@ -5,6 +5,7 @@
  */
 
 require('./bootstrap');
+// console.log(User.name())
 import Vue from 'vue'
 import VueProgressBar from 'vue-progressbar'
 import App from './components/AppHome1'

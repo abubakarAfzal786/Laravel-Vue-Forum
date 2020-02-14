@@ -15,15 +15,12 @@
             <div>{{quest.description}}</div>
           </div>
         </v-card-title>
-        <v-card-actions>
-          <v-btn flat color="orange">Share</v-btn>
-          <v-btn flat color="orange">Explore</v-btn>
-        </v-card-actions>
-      </v-card>
+
+      </v-card> 
     </v-flex>
     
   </v-layout>
- <div v-for="repli in this.reply" :key="repli.id">
+ <div v-for="(repli,index) in this.reply" :key="index">
    
 
 
@@ -31,7 +28,7 @@
 
  <div v-if="repli.child_id==0">
  <app-show-reply 
- :reply=repli  ></app-show-reply>
+ :reply=repli  :quest=quest.id :index=index></app-show-reply>
 </div>
 
 
@@ -43,10 +40,6 @@
 
  </div>
 
-       
- 
- 
-    </div>
 </template>
 <script>
 import AppShowReply from '../Reply/AppShowReply'
@@ -66,8 +59,15 @@ export default {
      }
     
    },
-    created() {
+    created(){
+
+    EventBus.$on('DeleteReply',(index)=>{
+      axios.delete(`/api/post/${this.quest.id}/reply/${this.reply[index].id}`)
+.then(response=>{
+this.reply.splice(index)
+})
       
+    })
          EventBus.$on('AddNewReply',(Reply)=>{
          
             this.reply.unshift(Reply)
@@ -78,6 +78,13 @@ export default {
   })
             
         })
+
      },
+     methods: {
+             me(){
+  return User.id()==this.quest.user_id?true:false
+}
+     },
+
 }
 </script>

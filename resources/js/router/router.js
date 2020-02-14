@@ -8,6 +8,7 @@ import AppAddQuestion from '../components/AppAddQuestion'
 import Applogout from '../components/Aplogout'
 import AppForum from '../components/AppForum'
 import AppShowQuestion from '../components/Question/AppShowQuestion'
+import AppChat from '../components/Chat/AppChat'
 Vue.use(VueRouter)
 
 // const Foo = { template: '<div>foo</div>' }
@@ -26,7 +27,8 @@ const routes = [
   { path: '/login', component: AppLogin },
   {path:'/logout',component:Applogout},
 {path:'/Forum',component:AppForum},
-{path:'/post/:slug',component:AppShowQuestion}
+{path:'/post/:slug',component:AppShowQuestion},
+{path:'/chat',component:AppChat}
   // { path: '/bar', component: Bar }
   
 ]

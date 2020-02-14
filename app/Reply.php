@@ -18,7 +18,7 @@ class Reply extends Model
     }
     public function posts()
     {
-        return $this->hasOne(posts::class);
+        return $this->belongsTo(posts::class);
     }
     public function user()
     {

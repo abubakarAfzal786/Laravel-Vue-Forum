@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class ReplyResource extends JsonResource
+class FriendResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -14,13 +14,13 @@ class ReplyResource extends JsonResource
      */
     public function toArray($request)
     {
-        return[
-            'comment'=>$this->comment,
-            'username'=>$this->user->name,
-            'created_at'=> $this->created_at->diffForHumans(),
-            'child_id'=>$this->child_id,
+        return [
             'id'=>$this->id,
-            'user_id'=>$this->user_id
+            'user_id'=>$this->user_id,
+            'friend_id'=>$this->friend_id,
+            'friend_name'=>$this->user->name,
+           
+            
         ];
     }
 }
